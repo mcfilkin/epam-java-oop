@@ -6,4 +6,5 @@ public class Candy extends Sweet {
 		super(name, weight);
 	}
 
+
 }

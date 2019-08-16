@@ -5,9 +5,11 @@ import java.util.Arrays;
 public class NewYearGift {
 	private Sweet[] gift;
 	private String receiverName;
+	private BoxType boxType;
 	
-	public NewYearGift() {
+	public NewYearGift(BoxType boxType) {
 		this.gift = new Sweet[0];
+		this.boxType = boxType;
 	}
 
 	public NewYearGift(Sweet[] sweets) {
@@ -58,5 +60,14 @@ public class NewYearGift {
 		}
 		
 		System.out.println("Total weight of the gift: " + totalWeight + " kg");
+	}
+	
+//	public Sweet findWithParameters() {
+//		
+//	}
+	public void printInfo() {
+		System.out.println("Items in gift:");
+		printItems();
+		printTotalWeight();
 	}
 }
