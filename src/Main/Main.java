@@ -1,4 +1,6 @@
-package gift;
+package Main;
+
+import gift.Menu;
 
 public class Main {
 
