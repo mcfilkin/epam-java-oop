@@ -66,10 +66,78 @@ public class NewYearGift {
 		System.out.println("Total weight of the gift: " + df.format(totalWeight) + " kg");
 	}
 
-	public Sweet findWithParameters() {
-		Arrays. 
+	public Sweet[] findWithParameters(SweetSearcher ss) {
+		Sweet[] result = this.gift.clone();
+		Sweet[] tmp = new Sweet[result.length];
+
+		int index = 0;
+		
+		if (ss.getName() != null) {
+			tmp = new Sweet[result.length];
+			for (int i = 0; i < result.length; i++) {
+				if (ss.getPartialMatch()) {
+					if (result[i].getName().contains(ss.getName())) {
+						tmp[index] = result[i];
+						index++;
+					}
+				} else {
+					if (result[i].getName() == ss.getName()) {
+						tmp[index] = result[i];
+						index++;
+					}
+				}
+
+			}
+			result = new Sweet[index];
+			for (int i = 0; i < index; i++) {
+				result[i] = tmp[i];
+			}
+			tmp = new Sweet[index];
+		}
+		if(ss.getWeight() != -1) {
+			if (index == 0) {
+				tmp = new Sweet[result.length];
+			} else {
+				index = 0;
+			}
+			
+			for (int i = 0; i < result.length; i++) {
+				switch (ss.getCompareWeight()) {
+				case 1:
+					if (result[i].getWeight() > ss.getWeight()) {
+						tmp[index] = result[i];
+						index++;
+					}
+					break;
+				case 0:
+					if (result[i].getWeight() == ss.getWeight()) {
+						tmp[index] = result[i];
+						index++;
+					}
+					break;
+				case -1:
+					if (result[i].getWeight() < ss.getWeight()) {
+						tmp[index] = result[i];
+						index++;
+					}
+					break;
+				}
+
+			}
+			result = new Sweet[index];
+			for (int i = 0; i < index; i++) {
+				result[i] = tmp[i];
+			}
+			tmp = new Sweet[index];
+		}
+
+//		for (int i = 0; i < this.gift.length; i++) {
+//			
+//		}
+
+		return result;
 	}
-	
+
 	public void printInfo() {
 		System.out.println("Items in gift:");
 		printItems();

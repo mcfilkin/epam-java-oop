@@ -2,6 +2,7 @@ package gift;
 
 import java.util.Scanner;
 
+import Sweets.Sweet;
 import Sweets.SweetProperty;
 
 public class Menu {
@@ -55,7 +56,16 @@ public class Menu {
 			case 3:
 				sortMenu(scan, gift);
 				break;
-			case 4:			
+			case 4:
+				SweetSearcher ss = new SweetSearcher();
+				//ss.addNameCriteria("Mishka na Servere", true);
+				ss.addWeightCriteria(200, -1);
+				Sweet[] s = gift.findWithParameters(ss);
+				int index = 1;
+				for (Sweet value : s) {
+					System.out.println(index+value.getName());
+					index++;
+				}
 				break;
 			case 5:
 				gift.printInfo();
